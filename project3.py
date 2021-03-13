@@ -4,6 +4,7 @@ import requests
 
 
 api_key = "65210ZZ38CVFIWM4"
+#api docs https://www.alphavantage.co/documentation/
 print("Stock Data Visualizer\n======================")
 
 symbol = input("\nEnter the stock symbol are looking for: ")
