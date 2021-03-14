@@ -65,3 +65,7 @@ end_date = input("Enter the end Date (YYYY-MM-DD):")
 #create lmxl file with graph data
 
 #send lxml to http and open file
+
+
+
+#after everything is pretty much toss it all in a while loop so user can re run a visualizaiton
