@@ -33,7 +33,7 @@ def getData(time_series, symbol, api_key):
     #create string
     
     ##STRING ADDITION NOT WORKING, probably doing it wrong 
-    apistring = "https://www.alphavatage.co/query?function="
+    apistring = "https://www.alphavantage.co/query?function="
     if (time_series == 1):
         time_series = "TIME_SERIES_INTRADAY"
     elif (time_series == 2):
@@ -42,54 +42,65 @@ def getData(time_series, symbol, api_key):
         time_series = "TIME_SERIES_WEEKLY"
     elif (time_series == 4):
         time_series = "TIME_SERIES_MONTHLY"
-
-    apistring += (time_series + "&symbol=" + symbol)
+    apistring = (apistring + (time_series + "&symbol=" + symbol))
     if (time_series == "TIME_SERIES_INTRADAY"):
         apistring += "&interval=30min"
-    apistring +="&apikey=" + api_key
+    apistring = apistring + ("&apikey=" + api_key)
     
-    apistring = "https://www.alphavatage.co/query?function="
+    
     print(apistring)
-
-print("Stock Data Visualizer\n======================")
-
-symbol = input("\nEnter the stock symbol are looking for: ")
-#check and see if symbol exist > error handling
-#probably just hit the api with a constant time_series value and input the requested symbol
-#see if we get a good respone
-
-print("\nChart Types\n==================\n1. Bar\n2. Line")
-chart_type = input("Enter the chart type you want (1 , 2):")
-#make sure it's 1 or 2, while loop > error handling
-if (chart_type == 1):
-    #implement function to get bar chart > API integration
-    print("1")
-if (chart_type == 2):
-    #implement function to get line chart > API inegration
-    print("2")
-
-print("\nSelect the Time Series of chart you want to Generate\n=================================================================")
-print("\n1. Intraday\n2. Daily\n3. Weekly\n4. Monthly")
-time_series = input("Enter the time series option (1, 2, 3, 4): ")
-# error check option picked > error handling
-
-
-start_date = input("Enter the start Date (YYYY-MM-DD):")
-# error handling > check valid date in YYYY-MM-DD
-end_date = input("Enter the end Date (YYYY-MM-DD):")
-# error hadling > check valid date in YYYY-MM-DD and that it is after the start date
-
-getData(time_series,symbol,api_key)
+    data = requests.get(apistring)
+    return data.text
 
 
 
-#parse out json data that comes back from API
+#main    
+do_program = True
+while (do_program):
+    print("Stock Data Visualizer\n======================")
 
-#use that data to create graph data 
-#create lmxl file with graph data
+    symbol = input("\nEnter the stock symbol are looking for: ")
+    #check and see if symbol exist > error handling
+    #probably just hit the api with a constant time_series value and input the requested symbol
+    #see if we get a good respone
 
-#send lxml to http and open file
+    print("\nChart Types\n==================\n1. Bar\n2. Line")
+    chart_type = input("Enter the chart type you want (1 , 2):")
+    #make sure it's 1 or 2, while loop > error handling
+    if (chart_type == 1):
+        #implement function to get bar chart > API integration
+        print("1")
+    if (chart_type == 2):
+        #implement function to get line chart > API inegration
+        print("2")
+
+    print("\nSelect the Time Series of chart you want to Generate\n=================================================================")
+    print("\n1. Intraday\n2. Daily\n3. Weekly\n4. Monthly")
+    time_series = int(input("Enter the time series option (1, 2, 3, 4): "))
+    # error check option picked > error handling
+
+
+    start_date = input("Enter the start Date (YYYY-MM-DD):")
+    # error handling > check valid date in YYYY-MM-DD
+    end_date = input("Enter the end Date (YYYY-MM-DD):")
+    # error hadling > check valid date in YYYY-MM-DD and that it is after the start date
+   
+    json = getData(time_series,symbol,api_key)
+    print(json)
+
+    #use dates provided to parse json
+
+    #use that data to create graph data
+    #  
+    #create lmxl file with graph data
+
+    #send lxml to http and open file
 
 
 
-#after everything is pretty much toss it all in a while loop so user can re run a visualizaiton
+    #after everything is pretty much toss it all in a while loop so user can re run a visualizaiton
+    an = str(input("Do you want to check another stock?"))
+    if (an == 'y' or an == 'Y'):
+        continue
+    else: 
+        do_program = False
