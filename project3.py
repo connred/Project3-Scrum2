@@ -71,8 +71,13 @@ while (do_program):
         print("Unknown Stock.\n")
         symbol = input("\nEnter the stock symbol are looking for: ")
         checksym = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbol + "&apikey=" + api_key
+<<<<<<< HEAD
     
    
+=======
+
+    
+>>>>>>> 97f3ad6097fb14edd2654031ac94d51af5b9ccd6
     print("\nChart Types\n==================\n1. Bar\n2. Line")
     chart_type = input("Enter the chart type you want (1 , 2):")
     #make sure it's 1 or 2, while loop > error handling
@@ -111,7 +116,7 @@ while (do_program):
 
     # end_date = input("Enter the end Date (YYYY-MM-DD):")
     # error hadling > check valid date in YYYY-MM-DD and that it is after the start date
-   
+
     valid = False
     while not valid:
         end_date = input("Enter the end Date (YYYY-MM-DD): ")
@@ -135,7 +140,7 @@ while (do_program):
     highdata =[]
     lowdata = []
     closeddata = []
-
+    
     # for loop to transfer data from apidata dictionary to newdata dictionary and then transfer
     #   individual data to different lists.
     # for loop to transfer data from apidata dictionary to newdata dictionary and then transfer
@@ -149,7 +154,6 @@ while (do_program):
         highdata.append(newdata[x]['2. high'])
         lowdata.append(newdata[x]['3. low'])
         closeddata.append(newdata[x]['4. close'])
-
     # method to convert data in list to float for chart data.
     def convert(data):
         for i in range(0, len(data)):
