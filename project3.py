@@ -71,13 +71,7 @@ while (do_program):
         print("Unknown Stock.\n")
         symbol = input("\nEnter the stock symbol are looking for: ")
         checksym = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbol + "&apikey=" + api_key
-<<<<<<< HEAD
-    
-   
-=======
 
-    
->>>>>>> 97f3ad6097fb14edd2654031ac94d51af5b9ccd6
     print("\nChart Types\n==================\n1. Bar\n2. Line")
     chart_type = input("Enter the chart type you want (1 , 2):")
     #make sure it's 1 or 2, while loop > error handling
