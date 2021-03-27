@@ -4,6 +4,7 @@ import requests
 import json
 import datetime
 import time as timemod
+import matplotlib.pyplot as plt
 
 api_key = "65210ZZ38CVFIWM4"
 #api docs https://www.alphavantage.co/documentation/
@@ -72,11 +73,15 @@ while (do_program):
         symbol = input("\nEnter the stock symbol are looking for: ")
         checksym = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbol + "&apikey=" + api_key
 
+    
     print("\nChart Types\n==================\n1. Bar\n2. Line")
     chart_type = input("Enter the chart type you want (1 , 2):")
     #make sure it's 1 or 2, while loop > error handling
    
-        
+    #error handling chart type
+    if (chart_type != '1' or chart_type != '2'):
+       print("\nPlease try again! Pick number 1 or 2")
+      
 
     print("\nSelect the Time Series of chart you want to Generate\n=================================================================")
     print("\n1. Intraday\n2. Daily\n3. Weekly\n4. Monthly")
@@ -139,6 +144,12 @@ while (do_program):
     #   individual data to different lists.
     # for loop to transfer data from apidata dictionary to newdata dictionary and then transfer
     #   individual data to different lists.
+    
+    plt.bar(start_data)
+    plt.bar(end_data)
+    plt.show()
+    
+    
     for key, value in apidata[time].items():
         datedata = list(apidata[time].keys())
         x+=1
@@ -148,6 +159,7 @@ while (do_program):
         highdata.append(newdata[x]['2. high'])
         lowdata.append(newdata[x]['3. low'])
         closeddata.append(newdata[x]['4. close'])
+   
     # method to convert data in list to float for chart data.
     def convert(data):
         for i in range(0, len(data)):
@@ -186,8 +198,6 @@ while (do_program):
         line_chart.add('Close', convert(closeddata))
         line_chart.render_in_browser() 
         pass
-
-
 
 
     #after everything is pretty much toss it all in a while loop so user can re run a visualizaiton
